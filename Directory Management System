@@ -3,26 +3,45 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-	 int Num1 = 1;
-	int Num2 = 2;
-	int Num3 = 3;
+	 int Num1 = 1;               
+	 int Num2 = 2;
+	 int Num3 = 3;
+	 int num1 = 1;
 	
-	
-	cout << "Main Menu \n";
-	cout << "1. List files\n";
-	cout << "2. Create directory.\n";
-	cout << "3. Change directory.\n";
-	cout << "4. Exit.\n";
+	cout <<  "     Main Menu  \n\n ";
+	cout << "--------------------\n";
+	cout << "1. List files in the current directory.\n";
+	cout << "2. Create a new directory.\n";
+	cout << "3. Change the working  directory.\n";
+	cout << "4. Exit.\n\n";
 
 
  cout << "Type a number: ";
  cin >> Num1;
- cout <<  " 1. List all files in the current directory.\n";
- cout <<  " 2. List files based on a specific extension (e.g., .txt).\n";
- cout <<  " 3. List files based on a pattern (e.g., moha*.*).\n";
+ cout << "\n\n";
+ cout << "  List File Detail \n\n";
  
+ cout <<     "----------------------\n";
+ cout <<  " 1. List all files .\n";
+ cout <<  " 2. List of extension files.\n";
+ cout <<  " 3. List of Name Wise.\n\n";
  
- 
+ cout << "Enter a Number: ";
+ cin >> num1;
+  cout << "\n\n";
+ cout << "List of all files\n\n";
+ cout << "File1.txt\n";
+ cout << "File2.cpp\n";
+ cout << "Report.doc\n";
+  cout << "Image.jpg\n";
+ cout<< "(continues...)\n";
+   cout << "\n\n";
+   cout << "Total files: 4\n";
+   
+   cout << "Enter a Number: ";
+   cin >> Num2
+   
+   
    
    
  return 0;
