@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	 int Num1 = 1;
+	int Num2 = 2;
+	int Num3 = 3;
+	
+	
+	cout << "Main Menu \n";
+	cout << "1. List files\n";
+	cout << "2. Create directory.\n";
+	cout << "3. Change directory.\n";
+	cout << "4. Exit.\n";
+
+
+ cout << "Type a number: ";
+ cin >> Num1;
+ cout <<  " 1. List all files in the current directory.\n";
+ cout <<  " 2. List files based on a specific extension (e.g., .txt).\n";
+ cout <<  " 3. List files based on a pattern (e.g., moha*.*).\n";
+ 
+ 
+ 
+   
+   
+ return 0;
+}
+ 
