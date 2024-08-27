@@ -2,48 +2,44 @@
 
 using namespace std;
 
-int main(int argc, char** argv) {
-	 int Num1 = 1;               
-	 int Num2 = 2;
-	 int Num3 = 3;
-	 int num1 = 1;
-	
-	cout <<  "     Main Menu  \n\n ";
-	cout << "--------------------\n";
-	cout << "1. List files in the current directory.\n";
-	cout << "2. Create a new directory.\n";
-	cout << "3. Change the working  directory.\n";
-	cout << "4. Exit.\n\n";
+int main() {
+    //Main menu
+    cout << "  Main Menu  \n\n";
+    cout << "--------------------\n";
+    cout << "1. List files in the current directory.\n";
+    cout << "2. Create a new directory.\n";
+    cout << "3. Change the working directory.\n";
+    cout << "4. Exit.\n\n";
+
+    int choice;
+    cout << "Type a number: ";
+    cin >> choice;
 
 
- cout << "Type a number: ";
- cin >> Num1;
- cout << "\n\n";
- cout << "  List File Detail \n\n";
- 
- cout <<     "----------------------\n";
- cout <<  " 1. List all files .\n";
- cout <<  " 2. List of extension files.\n";
- cout <<  " 3. List of Name Wise.\n\n";
- 
- cout << "Enter a Number: ";
- cin >> num1;
-  cout << "\n\n";
- cout << "List of all files\n\n";
- cout << "File1.txt\n";
- cout << "File2.cpp\n";
- cout << "Report.doc\n";
-  cout << "Image.jpg\n";
- cout<< "(continues...)\n";
-   cout << "\n\n";
-   cout << "Total files: 4\n";
-   
-   cout << "Enter a Number: ";
-   cin >> Num2
-   
-   
-   
-   
- return 0;
+    cout << "\n\n";
+    cout << "  List File Detail  \n\n";
+    cout << "----------------------\n";
+    cout << "1. List all files.\n";
+    cout << "2. List of extension files.\n";
+    cout << "3. List of Name Wise.\n\n";
+
+    cout << "Enter a Number: ";
+    cin >> choice;
+
+  
+    if (choice == 1) {
+        cout << "\nList of all files\n\n";
+        cout << "File1.txt\n";
+        cout << "File2.cpp\n";
+        cout << "Report.doc\n";
+        cout << "Image.jpg\n";
+        cout << "(continues...)\n";
+        cout << "\n\n";
+        cout << "Total files: 4" << endl;
+    } else {
+      
+    }
+
+    return 0;
 }
  
