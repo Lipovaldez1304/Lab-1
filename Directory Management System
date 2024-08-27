@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
+#include <direct.h>
 
 using namespace std;
 
 int main() {
-    //Main menu
+    // Main Menu
     cout << "  Main Menu  \n\n";
     cout << "--------------------\n";
     cout << "1. List files in the current directory.\n";
@@ -16,7 +18,7 @@ int main() {
     cin >> choice;
 
 
-    cout << "\n\n";
+     		cout << "\n\n";
     cout << "  List File Detail  \n\n";
     cout << "----------------------\n";
     cout << "1. List all files.\n";
@@ -25,10 +27,13 @@ int main() {
 
     cout << "Enter a Number: ";
     cin >> choice;
+        
 
-  
+
     if (choice == 1) {
-        cout << "\nList of all files\n\n";
+        // List all files
+        // ... (your code for listing all files)
+   cout << "\nList of all files\n\n";
         cout << "File1.txt\n";
         cout << "File2.cpp\n";
         cout << "Report.doc\n";
@@ -36,10 +41,19 @@ int main() {
         cout << "(continues...)\n";
         cout << "\n\n";
         cout << "Total files: 4" << endl;
-    } else {
-      
-    }
+    
+    } else if (choice == 2) {
+        // Create a new directory
+        string directory_name;
+        cout << "Enter the directory name: ";
+        cin >> directory_name;
+
+        if (_mkdir(directory_name.c_str()) == 0) {
+            cout << "Directory created successfully\n";
+        } else {
+            cout << "Error creating directory\n";
+        }
+}
 
     return 0;
 }
- 
