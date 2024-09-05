@@ -1,59 +1,68 @@
 #include <iostream>
-#include <string>
 #include <direct.h>
+#include <string.h>
 
 using namespace std;
+ 
+void displayMenu() {
+    cout << "     MAIN MENU   \n";
+    cout << "-----------------------\n";
+    cout << "1. Display List of Files\n";
+    cout << "2. Create New Directory\n";
+    cout << "3. Change the Working Directory\n";
+    cout << "4. Exit\n";
+    cout << "Enter your choice: ";
+}
 
-int main() {
-    // Main Menu
-    cout << "  Main Menu  \n\n";
-    cout << "--------------------\n";
-    cout << "1. List files in the current directory.\n";
-    cout << "2. Create a new directory.\n";
-    cout << "3. Change the working directory.\n";
-    cout << "4. Exit.\n\n";
-
-    int choice;
-    cout << "Type a number: ";
-    cin >> choice;
-
-
-     		cout << "\n\n";
-    cout << "  List File Detail  \n\n";
-    cout << "----------------------\n";
-    cout << "1. List all files.\n";
-    cout << "2. List of extension files.\n";
-    cout << "3. List of Name Wise.\n\n";
-
-    cout << "Enter a Number: ";
-    cin >> choice;
-        
-
-
-    if (choice == 1) {
-        // List all files
-        // ... (your code for listing all files)
-   cout << "\nList of all files\n\n";
-        cout << "File1.txt\n";
-        cout << "File2.cpp\n";
-        cout << "Report.doc\n";
-        cout << "Image.jpg\n";
-        cout << "(continues...)\n";
-        cout << "\n\n";
-        cout << "Total files: 4" << endl;
-    
-    } else if (choice == 2) {
-        // Create a new directory
-        string directory_name;
-        cout << "Enter the directory name: ";
-        cin >> directory_name;
-
-        if (_mkdir(directory_name.c_str()) == 0) {
-            cout << "Directory created successfully\n";
-        } else {
-            cout << "Error creating directory\n";
+void listAllFiles() {
+    DIR* dir;
+    struct dirent* ent;
+    if ((dir = opendir(".")) != NULL) {
+        while ((ent = readdir(dir)) != NULL) {
+            cout << ent->d_name << endl;
         }
+        closedir(dir);
+    } else {
+        perror("Error opening directory");
+    }
 }
 
-    return 0;
+
+void listFilesByExtension(const string& extension) {
+    DIR* dir;
+    struct dirent* ent;
+    if ((dir = opendir(".")) != NULL) {
+        while ((ent = readdir(dir)) != NULL) {
+            string fileName = ent->d_name;
+            if (fileName.find(extension, fileName.length() - extension.length()) != string::npos) {
+                cout << fileName << endl;
+            }
+        }
+        closedir(dir);
+    } else {
+        perror("Error opening directory");
+    }
 }
+
+
+void listFiles() {
+    cout << "\nList Files Menu:\n";111
+    cout << "1. List all files\n";
+    cout << "2. List files by extension\n";
+    cout << "3. List files by pattern\n";
+    cout << "Choose an option: ";
+    
+    int choice;
+    cin >> choice;
+    string extension, pattern;
+
+    switch (choice) {
+        case 1:
+            listAllFiles();
+            break;
+        case 2:
+            cout << "Enter the file extension (e.g., .txt): ";
+            cin >> extension;
+            listFilesByExtension(extension);
+            break;
+       
