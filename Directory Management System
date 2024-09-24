@@ -6,9 +6,10 @@
 #include <dirent.h>
 
 using namespace std;
- 
+
+// Function to display the main menu
 void displayMenu() {
-    cout << "     MAIN MENU   \n";
+    cout << "     MAIN MENU   \n";
     cout << "-----------------------\n";
     cout << "1. Display List of Files\n";
     cout << "2. Create New Directory\n";
@@ -17,23 +18,30 @@ void displayMenu() {
     cout << "Enter your choice: ";
 }
 
+// Function to list all files in the current directory
 void listAllFiles() {
-    DIR* dir;
-    struct dirent* ent;
+    DIR* dir; // Declare a directory pointer
+    struct dirent* ent; // Declare a directory entry pointer
+
+    // Open the current directory
     if ((dir = opendir(".")) != NULL) {
+        // Read and print each directory entry
         while ((ent = readdir(dir)) != NULL) {
             cout << ent->d_name << endl;
         }
+        // Close the directory
         closedir(dir);
     } else {
+        // Handle error if the directory cannot be opened
         perror("Error opening directory");
     }
 }
 
-
+// Function to list files by extension
 void listFilesByExtension(const string& extension) {
     DIR* dir;
     struct dirent* ent;
+
     if ((dir = opendir(".")) != NULL) {
         while ((ent = readdir(dir)) != NULL) {
             string fileName = ent->d_name;
@@ -47,10 +55,11 @@ void listFilesByExtension(const string& extension) {
     }
 }
 
-
+// Function to list files by pattern
 void listFilesByPattern(const string& pattern) {
     DIR* dir;
     struct dirent* ent;
+
     if ((dir = opendir(".")) != NULL) {
         while ((ent = readdir(dir)) != NULL) {
             string fileName = ent->d_name;
@@ -64,14 +73,14 @@ void listFilesByPattern(const string& pattern) {
     }
 }
 
-
+// Function to list files based on user choice
 void listFiles() {
     cout << "\nList Files Menu:\n";
     cout << "1. List all files\n";
     cout << "2. List files by extension\n";
     cout << "3. List files by pattern\n";
     cout << "Choose an option: ";
-    
+
     int choice;
     cin >> choice;
     string extension, pattern;
@@ -96,7 +105,7 @@ void listFiles() {
     }
 }
 
-
+// Function to create a new directory
 void createDirectory() {
     string dirName;
     cout << "Enter the name of the new directory: ";
@@ -109,14 +118,14 @@ void createDirectory() {
     }
 }
 
-
+// Function to change the current working directory
 void changeDirectory() {
     cout << "\nChange Directory Menu:\n";
     cout << "1. Move one step back (to the parent directory)\n";
     cout << "2. Move to the root directory\n";
     cout << "3. Move to a specific directory\n";
     cout << "Choose an option: ";
-    
+
     int choice;
     cin >> choice;
     string dirName;
@@ -151,6 +160,7 @@ void changeDirectory() {
     }
 }
 
+// Main function
 int main() {
     int choice;
 
@@ -175,5 +185,6 @@ int main() {
                 cout << "Invalid option, please try again.\n";
         }
     }
+
     return 0;
 }
