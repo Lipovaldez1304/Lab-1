@@ -1,0 +1,121 @@
+#include <iostream>
+#include <filesystem>
+#include <vector>
+
+using namespace std;
+
+namespace fs = std::filesystem;
+
+void displayMenu();
+void listFiles();
+void createDirectory();
+void changeDirectory();
+
+int main() {
+    int choice;
+    do {
+        displayMenu();
+        cout << "Enter the Number: ";
+        cin >> choice;
+        switch (choice) {
+            case 1: listFiles(); break;
+            case 2: createDirectory(); break;
+            case 3: changeDirectory(); break;
+            case 4: cout << "Exiting...\n"; return 0;
+            default: cout << "Invalid option, please try again.\n";
+        }
+    } while (choice != 4);
+    return 0;
+}
+
+void displayMenu() {
+    cout << "\n\t\t\tMAIN MENU\n\t\t-------------------\n";
+    cout << "1. Display List of Files\n";
+    cout << "2. Create New Directory\n";
+    cout << "3. Change the Working Directory\n";
+    cout << "4. Exit\n";
+}
+
+void listFiles() {
+    int option;
+    string extension, name;
+    cout << "\t\tLIST FILE DETAILS\n\t-----------------------\n";
+    cout << "1. List All Files\n";
+    cout << "2. List Files by Extension\n";
+    cout << "3. List Files by Name Pattern\n";
+    cin >> option;
+    switch (option) {
+        case 1:
+            for (const auto& entry : fs::directory_iterator(fs::current_path())) {
+                cout << entry.path().filename().string() << "\n";
+            }
+            break;
+        case 2:
+            cout << "Enter the extension (e.g., .txt): ";
+            cin >> extension;
+            for (const auto& entry : fs::directory_iterator(fs::current_path())) {
+                if (entry.path().extension() == extension) {
+                    cout << entry.path().filename().string() << "\n";
+                }
+            }
+            break;
+        case 3:
+            cout << "Enter the name pattern (e.g., file*): ";
+            cin >> name;
+            for (const auto& entry : fs::directory_iterator(fs::current_path())) {
+                if (entry.path().filename().string().find(name) != string::npos) {
+                    cout << entry.path().filename().string() << "\n";
+                }
+            }
+            break;
+        default:
+            cout << "Invalid option, returning to the main menu.\n";
+    }
+}
+
+void createDirectory() {
+    string dirName;
+    cout << "Enter the Directory name: ";
+    cin >> dirName;
+    if (fs::exists(dirName)) {
+        cout << dirName << " already exists.\n";
+    } else {
+        if (fs::create_directory(dirName)) {
+            cout << dirName << " Directory Successfully Created\n";
+        } else {
+            cout << "Failed to create directory " << dirName << ".\n";
+        }
+    }
+}
+
+void changeDirectory() {
+    int option;
+    string newDir;
+    cout << "\nCurrent Directory: " << fs::current_path().string() << "\n";
+    cout << "\t\tChange Directory\n\t\t-------------------------\n";
+    cout << "1. Step by Step Backward\n";
+    cout << "2. Go to Root Directory\n";
+    cout << "3. Forward Directory\n";
+    cout << "Enter the number: ";
+    cin >> option;
+    switch (option) {
+        case 1:
+            fs::current_path(fs::current_path().parent_path());
+            break;
+        case 2:
+            fs::current_path(fs::path("/"));
+            break;
+        case 3:
+            cout << "Enter the directory name: ";
+            cin >> newDir;
+            if (fs::exists(newDir) && fs::is_directory(newDir)) {
+                fs::current_path(newDir);
+            } else {
+                cout << "Directory does not exist.\n";
+            }
+            break;
+        default:
+            cout << "Invalid option, returning to the main menu.\n";
+    }
+    cout << "Current Directory: " << fs::current_path().string() << "\n";
+}  
